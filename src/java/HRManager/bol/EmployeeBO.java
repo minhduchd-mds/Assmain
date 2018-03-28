@@ -11,7 +11,8 @@ import HRManager.entities.Employee;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -102,11 +103,11 @@ public class EmployeeBO {
      *
      * Lay ve tat ca cac Employee co trong CSDL.
      */
-    public Employee[] select() {
+    public List<Employee> select() {
         String sql = "select * from Employees";
 //        DAO dao = new DAO();
 
-        Vector vE = new Vector();
+        List<Employee> list = new LinkedList();
         try {
             ResultSet rs = dao.executeQuery(sql);
             while (rs.next()) {
@@ -124,7 +125,7 @@ public class EmployeeBO {
                 e.setEmail(rs.getString("Email"));
                 e.setPhotoPath(rs.getString("PhotoPath"));
                 e.setNote(rs.getString("Note"));
-                vE.add(e);
+                list.add(e);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -132,14 +133,14 @@ public class EmployeeBO {
             return null;
         }
         dao.closeConnection();
-        return convertToArray(vE);
+        return list;
     }
 
     /**
      *
      * Tim kiem Employee co trong CSDL.
      */
-    public Employee[] find(int option, String value) {
+    public List<Employee> find(int option, String value) {
         String sql = "";
         switch (option) {
             case 0:
@@ -166,7 +167,7 @@ public class EmployeeBO {
         }
 //        DAO dao = new DAO();
 
-        Vector vE = new Vector();
+        List<Employee> list = new LinkedList();
         try {
             ResultSet rs = dao.executeQuery(ps);
             while (rs.next()) {
@@ -184,7 +185,7 @@ public class EmployeeBO {
                 e.setEmail(rs.getString("Email"));
                 e.setPhotoPath(rs.getString("PhotoPath"));
                 e.setNote(rs.getString("Note"));
-                vE.add(e);
+                list.add(e);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -192,7 +193,7 @@ public class EmployeeBO {
             return null;
         }
         dao.closeConnection();
-        return convertToArray(vE);
+        return list;
     }
 
     /**
@@ -239,15 +240,15 @@ public class EmployeeBO {
      *
      * Convert from Vector to Employee Array
      */
-    private Employee[] convertToArray(Vector v) {
-        int n = v.size();
-        if (n < 1) {
-            return null;
-        }
-        Employee[] arrEmployee = new Employee[n];
-        for (int i = 0; i < n; i++) {
-            arrEmployee[i] = (Employee) v.get(i);
-        }
-        return arrEmployee;
-    }
+//    private Employee[] convertToArray(List v) {
+//        int n = v.size();
+//        if (n < 1) {
+//            return null;
+//        }
+//        Employee[] arrEmployee = new Employee[n];
+//        for (int i = 0; i < n; i++) {
+//            arrEmployee[i] = (Employee) v.get(i);
+//        }
+//        return arrEmployee;
+//    }
 }

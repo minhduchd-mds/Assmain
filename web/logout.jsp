@@ -25,7 +25,7 @@
                 <br class="clearit" />
             </div>
         </div>
-        <c:remove var="username" scope="sesion"/>
+        <c:remove var="username" scope="session"/>
         <div class="content">
             <br><br>
             <h3>You logout complete!</h3>

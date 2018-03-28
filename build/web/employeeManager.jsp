@@ -50,15 +50,15 @@
                         <jsp:useBean id="ebo" class="HRManager.bol.EmployeeBO" scope="request"/>
                         <c:choose>
                             <c:when test="${empty param.option or empty param.value}">
-                                <c:set var="arr" value="${ebo.select()}" scope="request"/>
+                                <c:set var="list" value="${ebo.select()}" scope="request"/>
                             </c:when>
                             <c:otherwise>
                                 <c:choose>
                                     <c:when test="${param.option eq 'Name'}">
-                                        <c:set var="arr" value="${ebo.find(0, param.value)}" scope="request"/>
+                                        <c:set var="list" value="${ebo.find(0, param.value)}" scope="request"/>
                                     </c:when>
                                     <c:when test="${param.option eq 'City'}">
-                                         <c:set var="arr" value="${ebo.find(1, param.value)}" scope="request"/>
+                                         <c:set var="list" value="${ebo.find(1, param.value)}" scope="request"/>
                                     </c:when>
                                 </c:choose>
                             </c:otherwise>
@@ -66,8 +66,8 @@
                         
                         <jsp:useBean id="convert" scope="page" class="HRManager.ConvertData"/>
                         
-                        <c:if test="${fn:length(arr) > 0}">
-                            <c:forEach items="${arr}" var="em">
+                        <c:if test="${fn:length(list) > 0}">
+                            <c:forEach items="${list}" var="em">
                                 <tr>
                                     <td>${em.firstName} ${em.lastName}</td>
                                     <td>${convert.date2string(em.birthDate)}</td>

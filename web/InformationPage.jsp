@@ -27,17 +27,15 @@
         </div>
         <div class="content">
             <br><BR>
-
-            <h1 class="error">${param.msg}</h1>
             <c:choose>
-                <c:when test="${type eq 'error'}">
-                    <h1 class="error">${msg}</h1>
+                <c:when test="${param.type eq 'error'}">
+                    <h1 class="error">${param.msg}</h1>
                 </c:when>
-                <c:when test="${type eq 'info'}">
-                    <h1>${msg}</h1>
+                <c:when test="${param.type eq 'info'}">
+                    <h1>${param.msg}</h1>
                 </c:when>
                 <c:when test="${type eq 'warning'}">
-                    <h1>${msg}</h1>
+                    <h1>${param.msg}</h1>
                 </c:when>
             </c:choose>
         </div>
