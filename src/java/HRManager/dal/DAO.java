@@ -25,13 +25,13 @@ public class DAO {
     private String password;
 
     public DAO() {
-        this.driver = "net.sourceforge.jtds.jdbc.Driver";
-        this.urlDriver = "jdbc:jtds:sqlserver://";
+        this.driver = "org.apache.derby.jdbc.ClientDriver";
+        this.urlDriver = "jdbc:derby://localhost:1527/User";
         this.hostName = "localhost";
         this.port = "1433";
-        this.databaseName = "HRManager";
+        this.databaseName = "User";
         this.userName = "sa";
-        this.password = "123456";
+        this.password = "sa";
         this.openConnection();
     }
 
@@ -66,7 +66,7 @@ public class DAO {
     public void openConnection() {
         try {
             Class.forName(this.driver);
-            cnn = DriverManager.getConnection(this.urlDriver + this.hostName + ":" + this.port + ";databaseName=" + this.databaseName, this.userName, this.password);
+            cnn = DriverManager.getConnection(this.urlDriver, this.userName, this.password);
         } catch (SQLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

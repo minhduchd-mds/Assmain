@@ -8,11 +8,11 @@ import java.util.Date;
 
 public class Employee implements java.io.Serializable {
 
-    private int employeeID;
+    private long employeeID;
     private String lastName;
     private String firstName;
-    private Date birthDate;
-    private Date hireDate;
+    private String birthDate;
+    private String hireDate;
     private String address;
     private String city;
     private String country;
@@ -25,14 +25,14 @@ public class Employee implements java.io.Serializable {
     /**
      * @return the employeeID
      */
-    public int getEmployeeID() {
+    public long getEmployeeID() {
         return employeeID;
     }
 
     /**
      * @param employeeID the employeeID to set
      */
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeID(long employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -67,28 +67,28 @@ public class Employee implements java.io.Serializable {
     /**
      * @return the birthDate
      */
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
     /**
      * @param birthDate the birthDate to set
      */
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
     /**
      * @return the hireDate
      */
-    public Date getHireDate() {
+    public String getHireDate() {
         return hireDate;
     }
 
     /**
      * @param hireDate the hireDate to set
      */
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(String hireDate) {
         this.hireDate = hireDate;
     }
 
@@ -208,8 +208,8 @@ public class Employee implements java.io.Serializable {
         employeeID = 0;
         lastName = "";
         firstName = "";
-        birthDate = new Date();
-        hireDate = new Date();
+        birthDate = "";
+        hireDate = "";
         address = "";
         city = "";
         country = "";

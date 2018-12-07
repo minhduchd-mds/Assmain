@@ -29,6 +29,10 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         String userName = request.getParameter("txtUserName");
         String userPassword = request.getParameter("txtPassword");
+        System.out.print(userName);  
+        System.out.print(userPassword);
+        
+        
         HRManager.ValidData valid = new HRManager.ValidData();
         if (userName.length()==0) {
             goPage(request, response, "login.jsp?error=UserName");
@@ -40,12 +44,17 @@ public class Login extends HttpServlet {
             UserBO ubo = new UserBO();
             u.setUserName(userName);
             u.setUserPassword(userPassword);
+            System.out.print("had user and pass");
+            
             if (ubo.authorization(u)) {
+                System.out.print("authed true");
                 HttpSession session = request.getSession();
                 session.setAttribute("username", u.getUserName());
                 goPage(request, response, "EmployeeManager");
             } else {
                 goPage(request, response, "login.jsp?error=Error");
+                
+                System.out.print("authed fail");
             }
         }
     }

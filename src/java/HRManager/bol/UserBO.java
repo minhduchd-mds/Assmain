@@ -13,7 +13,8 @@ import java.sql.SQLException;
 public class UserBO {
 
     public boolean authorization(User u) {
-        String sql = "select * from users where username=? and userpassword=?";
+        
+        String sql = "select * from APP.users where username=? and password=?";
         DAO dao = new DAO();
         PreparedStatement ps;
         ResultSet rs;
@@ -22,14 +23,11 @@ public class UserBO {
             ps.setString(1, u.getUserName());
             ps.setString(2, u.getUserPassword());
             rs = dao.executeQuery(ps);
-            if (!rs.next()) {
-                return false;
-            }
+            return true;
         } catch (SQLException ex) {
             //SinhNX_Lib.getLogger(this.getClass().getName()).error("Can't get data from database. " + ex.toString());
-
             return false;
         }
-        return true;
+        
     }
 }

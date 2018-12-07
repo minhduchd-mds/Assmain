@@ -42,7 +42,7 @@ public class ProcessEmployee extends HttpServlet {
             if (action == null || action.equals("add")) {
                 e = new Employee();
             } else {
-                e = ebo.getByID(Integer.parseInt(id));
+                e = ebo.getByID(id);
             }
             request.setAttribute("e", e);
             request.setAttribute("action", action);
@@ -53,7 +53,7 @@ public class ProcessEmployee extends HttpServlet {
         }
         if (action != null && action.equals("delete")) {
             try {
-                e = ebo.getByID(Integer.parseInt(id));
+                e = ebo.getByID(id);
                 if (e == null) {
                     response.sendRedirect("InformationPage.jsp?type=error&msg=No have this EmployeeID");
                 } else {
@@ -70,11 +70,13 @@ public class ProcessEmployee extends HttpServlet {
             }
         } else {
             e = new HRManager.entities.Employee();
-            HRManager.ConvertData convert = new HRManager.ConvertData();
+//            HRManager.ConvertData convert = new HRManager.ConvertData();
+            e.setEmployeeID(System.currentTimeMillis());
             e.setFirstName(fName);
             e.setLastName(lName);
-            e.setBirthDate(convert.string2date(request.getParameter("txtBirthDate")));
-            e.setHireDate(convert.string2date(request.getParameter("txtHireDate")));
+            e.setBirthDate(request.getParameter("txtBirthDate"));
+            e.setHireDate(request.getParameter("txtHireDate"));
+            
             e.setAddress(request.getParameter("txtAddress"));
             e.setCity(request.getParameter("txtCity"));
             e.setCountry(request.getParameter("txtCountry"));
@@ -84,7 +86,7 @@ public class ProcessEmployee extends HttpServlet {
             e.setNote(request.getParameter("txtNote"));
             if (action.equals("edit")) {
                 try {
-                    e.setEmployeeID(Integer.parseInt(id));
+                    e.setEmployeeID(Long.parseLong(id));
                     if (ebo.edit(e) > 0) {
                         response.sendRedirect("InformationPage.jsp?type=info&msg=This EmployeeID updated");
                     } else {

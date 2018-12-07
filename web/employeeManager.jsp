@@ -4,12 +4,19 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Employees Manager</title>
         <link href="css/menu_style.css" type="text/css" rel="stylesheet" />
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <link href="css/animate.css" rel="stylesheet" type="text/css"/>
+           <script src="script/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="script/bootstrap.min.js" type="text/javascript"></script>
+        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+       
     </head>
     <body>
 
@@ -31,13 +38,13 @@
                 </div>
                 <div class="content">
                     <br><br>
-                    <table id="tb" width="100%" align="center">
+                    <table id="tb" width="100%" align="center" class="table table-striped">
                         <tr>
                             <th colspan="11" height="50px"><h4>EMPLOYEE LIST</h4></th>
                         </tr>
                         <tr>
                             <th>Name</th>
-                            <th>Bithday Date</th>
+                            <th>Birthday Date</th>
                             <th>Hire Date</th>
                             <th>Address</th>
                             <th>City</th>
@@ -64,22 +71,22 @@
                             </c:otherwise>
                         </c:choose>
                         
-                        <jsp:useBean id="convert" scope="page" class="HRManager.ConvertData"/>
+                        <%--<jsp:useBean id="convert" scope="page" class="HRManager.ConvertData"/>--%>
                         
                         <c:if test="${fn:length(list) > 0}">
                             <c:forEach items="${list}" var="em">
                                 <tr>
                                     <td>${em.firstName} ${em.lastName}</td>
-                                    <td>${convert.date2string(em.birthDate)}</td>
-                                    <td>${convert.date2string(em.hireDate)}</td>
+                                    <td>${em.birthDate}</td>
+                                    <td>${em.hireDate}</td>
                                     <td>${em.address}</td>
                                     <td>${em.city}</td>
                                     <td>${em.country}</td>
                                     <td>${em.homePhone}</td>
                                     <td>${em.mobile}</td>
                                     <td>${em.email}</td>
-                                    <td align='center'><a href='ProcessEmployee?action=edit&id=${em.employeeID}'>Edit </a></td>
-                                    <td align='center'><a href='ProcessEmployee?action=delete&id=${em.employeeID}'> Delete</a></td>
+                                    <td align='center'><a href='ProcessEmployee?action=edit&id=${em.employeeID}'><i class="fa fa-pencil-square-o"></i>Edit </a></td>
+                                    <td align='center'><a href='ProcessEmployee?action=delete&id=${em.employeeID}'><i class="fa fa-trash"></i> Delete</a></td>
                                 </tr>
                             </c:forEach>
                         </c:if>

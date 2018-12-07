@@ -9,7 +9,9 @@
         <title>JSP Page</title>
         <link href="css/menu_style.css" type="text/css" rel="stylesheet" />
         <link href="css/style.css" type="text/css" rel="stylesheet" />
+         <link href="css/boostrap.min.css" type="text/css" rel="stylesheet" />
         <script src="script/valid_data.js"></script>
+        <script src="script/bootstrap.min.js" type="text/javascript"></script>
     </head>
     <body>
         <c:choose>
@@ -49,7 +51,7 @@
         <div class="content">
             <br><br>
             <jsp:useBean id="e" class="HRManager.entities.Employee" scope="request"/>
-            <jsp:useBean id="convert" class="HRManager.ConvertData" scope="session"/>
+            <%--<jsp:useBean id="convert" class="HRManager.ConvertData" scope="session"/>--%>
             <table align="center" id="tb2">
                 <tr>
                     <td colspan="3"><h3 align="center">${pageScope.lB} Employee</h3></td>
@@ -69,12 +71,12 @@
                     </tr>
                     <tr>
                         <td>Birth Date: </td>
-                        <td><input type="text" name="txtBirthDate"  value='${convert.date2string(e.birthDate)}' onblur="check_valid('birth', this.value)"></td>
+                        <td><input type="text" name="txtBirthDate"  value='${e.birthDate}' onblur="check_valid('birth', this.value)"></td>
                         <td><label id="lblBirthDate" class="error"/></td>
                     </tr>
                     <tr>
                         <td>Hire Date: </td>
-                        <td><input type="text" name="txtHireDate" value='${convert.date2string(e.hireDate)}' onblur="check_valid('hire', this.value)"></td>
+                        <td><input type="text" name="txtHireDate" value='${e.hireDate}' onblur="check_valid('hire', this.value)"></td>
                         <td><label id="lblHireDate" class="error"/></td>
                     </tr>
                     <tr>
